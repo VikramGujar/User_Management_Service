@@ -18,6 +18,7 @@ import com.vik.entity.MyUser;
 import com.vik.model.LoginUser;
 import com.vik.service.IUserManagementService;
 
+// @RestController for REST API 
 @RestController
 public class UserManagementController 
 {
@@ -32,7 +33,7 @@ public class UserManagementController
 		return res;
 	}
 	
-
+	// To register user 
 	@PostMapping("/register")
 	public ResponseEntity<String> addUser(@RequestBody MyUser user)
 	{
@@ -41,6 +42,8 @@ public class UserManagementController
 		return response;
 	}
 	
+	
+	// To login user
 	@PostMapping("/login")
 	public ResponseEntity<String> checkUser(@RequestBody LoginUser log)
 	{
@@ -49,6 +52,8 @@ public class UserManagementController
 		return response;
 	}
 	
+	
+	// To Authorize request only for ADMIN
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/allUsers")
 	public ResponseEntity<List<MyUser>> showAllUsers()
@@ -68,6 +73,8 @@ public class UserManagementController
 		return response;
 	}
 	
+	
+	// To Authorize request only for ADMIN
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable Integer id)
@@ -77,6 +84,8 @@ public class UserManagementController
 		return res;
 	}
 	
+	
+	// To Authorize request only for ADMIN
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/deleteAll")
 	public ResponseEntity<String> deleteAllUsers()
@@ -86,6 +95,8 @@ public class UserManagementController
 		return res;
 	}
 	
+	
+	// To Authorize request only for ADMIN
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/updateUser")
 	public ResponseEntity<String> userUpdate(@RequestBody MyUser user)

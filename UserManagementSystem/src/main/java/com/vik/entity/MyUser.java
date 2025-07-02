@@ -1,5 +1,8 @@
 package com.vik.entity;
 
+// Class for O-R-Mapping 
+// DB Table and Java Class mapping
+
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,6 +25,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "USER_MNGMNT")
+// Lombok API annotations to avoid Boilerplate code
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,6 +33,8 @@ import lombok.ToString;
 @ToString
 public class MyUser {
 
+	// @Id for defining primary key of DB table
+	// @SequenceGenerator & @GeneratedValue for auto generated ID value 
 	@Id
     @SequenceGenerator(name = "user", sequenceName = "USER_SEQ", allocationSize = 1, initialValue = 100)
     @GeneratedValue(generator = "user", strategy = GenerationType.SEQUENCE)
@@ -47,6 +53,10 @@ public class MyUser {
 	private String role;
     
     
+    //========== META DATA ============= 
+    
+    // TIME STAMPING FEATURE 
+    
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime registerDateTime;
@@ -54,6 +64,9 @@ public class MyUser {
     @UpdateTimestamp
     @Column(insertable = false)
     private LocalDateTime updationDateTime;
+    
+    
+    // VERSIONING FEATURE 
     
     @Version
     private Integer updateCount;

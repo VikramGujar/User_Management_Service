@@ -1,5 +1,8 @@
 package com.vik.service;
 
+// To follow Strategy Design Pattern 
+// Interface is created to achieve loose coupling 
+
 import java.util.List;
 
 import com.vik.entity.MyUser;

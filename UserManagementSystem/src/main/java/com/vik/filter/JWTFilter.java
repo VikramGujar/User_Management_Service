@@ -1,5 +1,7 @@
 package com.vik.filter;
 
+// CLASS For Token based User authentication filter
+
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,20 +34,24 @@ public class JWTFilter extends OncePerRequestFilter
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException 
 	{
+		// To get [ Bearer TOKEN ]
 		String authHeader = request.getHeader("Authorization");
 		String token = null;
 		String email = null;
 		
 		if(authHeader != null && authHeader.startsWith("Bearer "))
 		{
+			// To extract token from [ Bearer TOKEN ]
 			token = authHeader.substring(7);
 			email = jwtSer.extractEmail(token);
 		}
 		
+		// USER AUTHENTICATION
 		if(email != null && SecurityContextHolder.getContext().getAuthentication() == null)
 		{
 			UserDetails userDetails = context.getBean(MyUserDetailsService.class).loadUserByUsername(email);
 			
+			// Validate Token and user authentication
 			if(jwtSer.validateToken(token, userDetails))
 			{
 				UsernamePasswordAuthenticationToken authToken = 
@@ -54,7 +60,7 @@ public class JWTFilter extends OncePerRequestFilter
 				SecurityContextHolder.getContext().setAuthentication(authToken);
 			}
 		}
-		
+	
 		filterChain.doFilter(request, response);
 	}
 

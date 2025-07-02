@@ -1,5 +1,7 @@
 package com.vik.model;
 
+// DTO class for login data transfer
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

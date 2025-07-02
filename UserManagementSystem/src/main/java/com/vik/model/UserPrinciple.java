@@ -1,5 +1,7 @@
 package com.vik.model;
 
+// To create implementation object of UserDetails class 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class UserPrinciple implements UserDetails
 		this.user = user;
 	}
 
+	// To check Role Authority
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() 
 	{

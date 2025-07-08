@@ -15,15 +15,17 @@ public class UserManagmentControllerAdvice
 	@ExceptionHandler(IllegalArgumentException.class)
 	public ResponseEntity<String> handleArgumentException(IllegalArgumentException exp)
 	{
-		ResponseEntity<String> res = new 
-				ResponseEntity<String>("Problem ::"+exp.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-		return res;
+		return new ResponseEntity<String>
+					("Problem ::"+exp.getMessage(),HttpStatus.BAD_REQUEST);
+		
 	}
 	
 	// Method for All kind of Exception handling
+	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleAllExceptions(Exception e)
 	{
-		ResponseEntity<String> res = new ResponseEntity<String>("Problem ::"+e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-		return res;	
+		return new ResponseEntity<String>
+					("Problem ::"+e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		 	
 	}
 }

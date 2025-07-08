@@ -31,7 +31,7 @@ public class JWTFilter extends OncePerRequestFilter
 	private ApplicationContext context;
 	
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException 
 	{
 		// To get [ Bearer TOKEN ]

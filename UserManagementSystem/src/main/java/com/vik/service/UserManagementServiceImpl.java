@@ -84,7 +84,8 @@ public class UserManagementServiceImpl implements IUserManagementService {
 			repo.deleteById(id);
 			return "User with "+id+" ID is deleted";
 		}
-		throw new IllegalArgumentException("Record ID = "+id+" You want to delete dose not exist");
+		throw new IllegalArgumentException("Record ID = " + id + " you want to delete does not exist");
+
 	}
 
 	
